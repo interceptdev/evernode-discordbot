@@ -56,14 +56,14 @@ class AgencyBot(commands.Bot):
             GuildObj = discord.Object(id=GuildId)
             self.tree.copy_global_to(guild=GuildObj)
             Synced = await self.tree.sync(guild=GuildObj)
-            await Ctx.send(f"✅ Synced {len(Synced)} slash commands to guild `{GuildId}`.")
+            await Ctx.send(f"Synced {len(Synced)} slash commands to guild `{GuildId}`.")
         elif Scope == "global":
             Synced = await self.tree.sync()
-            await Ctx.send(f"✅ Synced {len(Synced)} slash commands globally.")
+            await Ctx.send(f"Synced {len(Synced)} slash commands globally.")
         else:
-            await Ctx.send("❌ Invalid scope. Use `guild` or `global`.")
+            await Ctx.send("Invalid scope. Use `guild` or `global`.")
             
     @sync_prefix.error
     async def sync_prefix_error(self, Ctx: commands.Context, Error: commands.CommandError):
         if isinstance(Error, commands.NotOwner):
-            await Ctx.send("❌ Only the bot owner can execute this command.")
+            await Ctx.send("Only the bot owner can execute this command.")
